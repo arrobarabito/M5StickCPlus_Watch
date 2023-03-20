@@ -110,7 +110,7 @@ void Battery() {
 }
 
 void Dimmer() {
-  // Adjust the screen brightness
+  // Adjust the screen brightness when the B button is pressed
   Serial.println("B Button pressed");
   M5.Beep.tone(4000);
   delay(100);
