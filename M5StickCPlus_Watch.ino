@@ -5,6 +5,7 @@
 //Set initial brightness (Values 7-15)
 int brightness = 7;
 
+//Thunder image exported as xbm
 const unsigned char thunder_bits[] PROGMEM = {
    0x00, 0x00, 0x00, 0x00, 0x00, 0xf8, 0xff, 0x7f, 0x00, 0x00, 0x00, 0x00,
    0x00, 0x00, 0xfc, 0xff, 0xff, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0xfc,
@@ -109,7 +110,7 @@ void Battery() {
 }
 
 void Dimmer() {
-  // Dims the display
+  // Adjust the screen brightness
   Serial.println("B Button pressed");
   M5.Beep.tone(4000);
   delay(100);
@@ -161,6 +162,7 @@ void setup() {
 }
 
 void loop() {
+  // Display text at the top of the screen 
   M5.Lcd.setCursor(10, 0);
   M5.Lcd.setTextColor(TFT_WHITE, TFT_BLACK);
   M5.Lcd.setTextSize(2);
