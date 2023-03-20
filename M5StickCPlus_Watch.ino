@@ -2,10 +2,10 @@
 #include <time.h>
 #include <M5StickCPlus.h>
 
-//Set initial brightness (Values 7-15)
+// Set the initial brightness (Values 7-15)
 int brightness = 7;
 
-//Thunder image exported as xbm
+// Thunder image exported as xbm
 const unsigned char thunder_bits[] PROGMEM = {
    0x00, 0x00, 0x00, 0x00, 0x00, 0xf8, 0xff, 0x7f, 0x00, 0x00, 0x00, 0x00,
    0x00, 0x00, 0xfc, 0xff, 0xff, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0xfc,
@@ -83,7 +83,7 @@ const unsigned char thunder_bits[] PROGMEM = {
    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
-//Edit with your WiFi information
+// Edit with your WiFi information
 const char* ssid = "M5";
 const char* password = "1234567890";
 
@@ -125,7 +125,7 @@ void setup() {
   M5.begin();
   pinMode(10, OUTPUT);
   delay(500);
-  digitalWrite (10, HIGH); // turn off the LED
+  digitalWrite (10, HIGH); // This line turns off the internal LED. ESP pins work backwards?
   M5.Lcd.setRotation(3); // Flip the screen 180 degrees
   M5.Lcd.fillScreen(TFT_BLACK);
   M5.Axp.ScreenBreath(brightness);
@@ -194,7 +194,7 @@ void loop() {
   M5.Lcd.setTextSize(2);
   M5.Lcd.print(dayStr);
 
-  // Beep twice every hour
+  // Beep twice every hour and turn on the LED
   if (timeinfo.tm_min == 0 && timeinfo.tm_sec == 0) {
     if (timeinfo.tm_hour == 0 || timeinfo.tm_hour == 12) {
       // For midnight and noon, beep 3 times
@@ -204,7 +204,7 @@ void loop() {
         M5.Beep.mute();
         digitalWrite(10, LOW);
         delay(500);
-        digitalWrite(10, HIGH);//Turn off the LED. ESP pins work backwards?
+        digitalWrite(10, HIGH);// Turn off the LED
         delay(500);
       }
     } else {
